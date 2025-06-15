@@ -1,8 +1,0 @@
-{
-    "id": 6,
-    "name": "Антон",
-    "surname": "Помазкин",
-    "position": "Доцент",
-    "phoneNumber": "+375293300333",
-    "studentIds": [1, 3]
-}
