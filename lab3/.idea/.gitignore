@@ -5,3 +5,7 @@ target/
 .idea/
 *.iml
 application.properties
+application.yml
+
+# Log files
+*.log

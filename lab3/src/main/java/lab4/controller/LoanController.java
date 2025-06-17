@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "api/loan", produces = MediaType.APPLICATION_JSON_VALUE)
-public class LoanController extends AbstractController<Loan> {
+public class    LoanController extends AbstractController<Loan> {
 
     @Autowired
     private LoanService service;

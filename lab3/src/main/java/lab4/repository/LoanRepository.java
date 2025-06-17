@@ -12,6 +12,7 @@ import java.util.List;
 public interface LoanRepository extends JpaRepository<Loan, Long> {
     List<Loan> findByReaderId(Long readerId);
     List<Loan> findByBookId(Long bookId);
+    long countByActualReturnDateIsNull();
 
     @Query("SELECT l.book, COUNT(l) AS loanCount FROM Loan l GROUP BY l.book ORDER BY loanCount DESC")
     List<Object[]> findMostPopularBooks();

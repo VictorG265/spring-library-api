@@ -12,6 +12,7 @@ spring:
     url: jdbc:mysql://localhost:3306/library?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&useLegacyDatetimeCode=false
     username: root
     password: Sous5061687
+
   # JPA properties
   jpa:
     hibernate:
@@ -22,3 +23,10 @@ spring:
     # database-platform: org.hibernate.dialect.MySQL55Dialect
     #  open-in-view: false
     generate-ddl: true
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+    web:
+      resources:
+        add-mappings: false

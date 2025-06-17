@@ -19,12 +19,24 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, "/api/**").hasAnyRole("USER", "ADMIN")  // Доступ к GET-запросам для USER и ADMIN
-                        .requestMatchers("/api/**").hasRole("ADMIN")  // Остальные запросы только для ADMIN
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").authenticated() // Swagger доступен только авторизованным пользователям
-                        .anyRequest().denyAll()) // Остальные запросы запрещены для неавторизованных пользователей
+                        // доступ к библиотечной статистике
+                        .requestMatchers(HttpMethod.GET, "/api/library/stats").hasAnyRole("USER", "ADMIN")
+
+                        // loan — доступ только к определённым методам для USER
+                        .requestMatchers(HttpMethod.POST, "/api/loan").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/loan/top-books", "/api/loan/debtors").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/api/loan/**").hasRole("ADMIN")
+
+                        // остальные GET-запросы
+                        .requestMatchers(HttpMethod.GET, "/api/**").hasAnyRole("USER", "ADMIN")
+                        // остальные запросы — только для ADMIN
+                        .requestMatchers("/api/**").hasRole("ADMIN")
+
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").authenticated()
+                        .anyRequest().permitAll())
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable);
+
         return http.build();
     }
 

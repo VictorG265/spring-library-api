@@ -15,7 +15,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Book read(Long id) {
-		return repository.findById(id).orElseThrow(IllegalArgumentException::new);
+		return repository.findById(id).orElse(null);
 	}
 
 	@Override
