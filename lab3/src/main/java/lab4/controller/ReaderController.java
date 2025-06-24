@@ -53,11 +53,16 @@ public class ReaderController extends AbstractController<Reader> {
     }
 
     @GetMapping("/range")
-    public List <Reader> findInRange(
+    public ResponseEntity <?> findInRange(
             @RequestParam Long a,
             @RequestParam Long b
     ){
+        if (a < b){
+            return ResponseEntity
+                    .badRequest()
+                    .body("Некорректный диапазон");
+        }
         List <Reader> readerList = service.findByIdBetween(a, b);
-        return ResponseEntity.ok(readerList).getBody();
+        return ResponseEntity.ok(readerList);
     }
 }
