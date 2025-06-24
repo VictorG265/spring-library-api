@@ -62,6 +62,11 @@ public class ReaderController extends AbstractController<Reader> {
                     .badRequest()
                     .body("Некорректный диапазон");
         }
+        if (a < 0 || b < 0){
+            return ResponseEntity
+                    .badRequest()
+                    .body("Диапазон не может включать в себя отрицательные числа");
+        }
         List <Reader> readerList = service.findByIdBetween(a, b);
         return ResponseEntity.ok(readerList);
     }
