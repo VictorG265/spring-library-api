@@ -10,5 +10,6 @@ public interface ReaderService extends Service<Reader> {
 	Reader readByEmail(String email);
 	List<Loan> getOverdueLoans(Long readerId);
 	Reader update(Long id, Reader entity);
+	List <Reader> findByIdBetween(Long from, Long to);
 }
 

@@ -3,7 +3,6 @@ package lab4.service.impl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import lab4.entity.Loan;
 import lab4.repository.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,5 +74,10 @@ public class ReaderServiceImpl implements ReaderService {
 		reader.setName(entity.getName());
 		reader.setEmail(entity.getEmail());
 		return repository.save(reader);
+	}
+
+	@Override
+	public List <Reader> findByIdBetween(Long from, Long to){
+		return repository.findByIdBetween(from, to);
 	}
 }

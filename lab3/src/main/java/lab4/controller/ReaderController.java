@@ -51,4 +51,13 @@ public class ReaderController extends AbstractController<Reader> {
         Reader updatedReader = service.update(id, reader);
         return ResponseEntity.ok(updatedReader);
     }
+
+    @GetMapping("/range")
+    public List <Reader> findInRange(
+            @RequestParam Long a,
+            @RequestParam Long b
+    ){
+        List <Reader> readerList = service.findByIdBetween(a, b);
+        return ResponseEntity.ok(readerList).getBody();
+    }
 }
